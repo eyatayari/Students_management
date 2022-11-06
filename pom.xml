@@ -5,7 +5,12 @@
   <groupId>enicar.soc</groupId>
   <artifactId>soc-project</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <modules>
+
+    <module>student</module>
+    <module>fraud</module>
+  </modules>
+  <packaging>pom</packaging>
 
   <name>soc-project</name>
   <url>https://maven.apache.org</url>
