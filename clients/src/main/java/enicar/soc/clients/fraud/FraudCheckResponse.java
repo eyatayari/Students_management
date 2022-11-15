@@ -1,4 +1,4 @@
-package enicar.soc.fraud;
+package enicar.soc.clients.fraud;
 
 public record FraudCheckResponse(boolean isFraudster) {
 }

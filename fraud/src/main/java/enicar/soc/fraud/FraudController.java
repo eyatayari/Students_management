@@ -1,5 +1,6 @@
 package enicar.soc.fraud;
 
+import enicar.soc.clients.fraud.FraudCheckResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +11,10 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class FraudController {
     private final FraudCheckService fraudCheckService;
-
-    @GetMapping(path = "{studentId")
-    public FraudCheckResponse isFraudster(@PathVariable("studentId")Integer studentId){
-        boolean isfraudulentStudent= fraudCheckService.isFraudulentStudent(studentId);
-        log.info("fraud check request for student {}",studentId);
-return new FraudCheckResponse(isfraudulentStudent);
-    }
+@GetMapping(path = "{studentId")
+public FraudCheckResponse isFraudster(@PathVariable("studentId")Integer studentID){
+    boolean isFraudulentStudent = fraudCheckService.isFraudulentStudent(studentID);
+    log.info("fraud check request for customer{}",studentID);
+    return new FraudCheckResponse(isFraudulentStudent);
+}
 }
