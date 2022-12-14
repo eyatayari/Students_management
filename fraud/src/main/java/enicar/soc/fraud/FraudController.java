@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class FraudController {
     private final FraudCheckService fraudCheckService;
-@GetMapping(path = "{studentId")
+@GetMapping(path = "{studentId}")
 public FraudCheckResponse isFraudster(@PathVariable("studentId")Integer studentID){
     boolean isFraudulentStudent = fraudCheckService.isFraudulentStudent(studentID);
     log.info("fraud check request for customer{}",studentID);

@@ -14,7 +14,7 @@ public class StudentService {
 private final StudentRepository studentRepository;
 private final RestTemplate restTemplate;
 private final FraudClient fraudClient;
-private final NotificationClient notificationClient
+private final NotificationClient notificationClient;
     public void registerCustomer(StudentRegistrationRequest request) {
 
                 Student student= Student.builder()
