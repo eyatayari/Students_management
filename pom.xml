@@ -12,6 +12,7 @@
     <module>eureka-server</module>
       <module>clients</module>
     <module>Notifcation</module>
+      <module>api-gateway</module>
   </modules>
   <packaging>pom</packaging>
 
