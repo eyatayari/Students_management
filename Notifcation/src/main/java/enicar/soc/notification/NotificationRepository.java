@@ -1,4 +1,4 @@
-package enicar.soc;
+package enicar.soc.notification;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

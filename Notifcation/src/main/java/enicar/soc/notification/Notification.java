@@ -1,4 +1,4 @@
-package enicar.soc;
+package enicar.soc.notification;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

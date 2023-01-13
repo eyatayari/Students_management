@@ -13,6 +13,7 @@
       <module>clients</module>
     <module>Notifcation</module>
       <module>api-gateway</module>
+      <module>amqp</module>
   </modules>
   <packaging>pom</packaging>
 

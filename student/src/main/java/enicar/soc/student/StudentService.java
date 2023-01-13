@@ -1,5 +1,6 @@
 package enicar.soc.student;
 
+import enicar.soc.amqp.RabbitMQMessageProducer;
 import enicar.soc.clients.fraud.FraudCheckResponse;
 import enicar.soc.clients.fraud.FraudClient;
 import enicar.soc.clients.notifcation.NotificationClient;
@@ -12,9 +13,10 @@ import org.springframework.web.client.RestTemplate;
 @AllArgsConstructor
 public class StudentService {
 private final StudentRepository studentRepository;
-private final RestTemplate restTemplate;
+
 private final FraudClient fraudClient;
-private final NotificationClient notificationClient;
+
+private final RabbitMQMessageProducer rabbitMQMessageProducer;
     public void registerCustomer(StudentRegistrationRequest request) {
 
                 Student student= Student.builder()
@@ -29,12 +31,14 @@ private final NotificationClient notificationClient;
        if(fraudCheckResponse.isFraudster()){
            throw new IllegalStateException("fraudster");
        }
-                // todo : send notification
-        notificationClient.sendNotification(new NotificationRequest(
+
+        NotificationRequest notificationRequest = new NotificationRequest(
                 student.getId(),student.getEmail(),String.format(
 
-                "hi%s, welcome to enicar",student.getFirstname()
-        )));
+                "hi %s, welcome to enicar",student.getFirstname()
+        ));
+       rabbitMQMessageProducer.publish(notificationRequest,
+               "internal.exchange","internal.notification.routing-key");
 
     }
 }

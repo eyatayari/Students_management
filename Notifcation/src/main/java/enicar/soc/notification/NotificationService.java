@@ -1,6 +1,5 @@
-package enicar.soc;
+package enicar.soc.notification;
 
-import enicar.soc.clients.notifcation.NotificationClient;
 import enicar.soc.clients.notifcation.NotificationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
