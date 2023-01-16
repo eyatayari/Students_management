@@ -5,6 +5,17 @@ services:
     ports:
       # Port used for the Zipkin UI and HTTP Api
       - 9411:9411
+  keycloak:
+    image: quay.io/keycloak/keyloak:latest
+    container_name: keycloak
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: eya
+    hostname-port: 3000
+    ports:
+      # Port used for the Zipkin UI and HTTP Api
+      - 3000:8080
+
   rabbitmq:
     image: rabbitmq:3.9.11-management-alpine
     container_name: rabbitmq

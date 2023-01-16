@@ -1,5 +1,7 @@
 server:
   port: 8080
+
+
 spring:
   application:
     name: student
@@ -7,6 +9,16 @@ spring:
     url: jdbc:postgresql://localhost:5433/student
     username: amigoscode
     password: password
+  thymeleaf:
+    check-template-location : true
+
+    cache: false
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://127.0.0.1:8180/auth/realms/microservices-realm
+
   jpa:
     hibernate:
       ddl-auto: create-drop

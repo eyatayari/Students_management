@@ -1,18 +1,34 @@
-spring:
-  application:
-    name: api-gateway
-  zipkin:
-    base-url: http://localhost:9411
-  cloud:
-    gateway:
-      routes:
-        - id: student
-          uri: lb://STUDENT
-          predicates:
-            - Path=/api/v1/students/**
+
+
+  #  mvc:
+#    path match:
+#      matching-strategy: ant_path_matcher
+#  main:
+#    web-application-type: reactive
+#    allow-bean-definition-overriding: true
 
 server:
   port: 8083
+application:
+  name: api-gateway
+zipkin:
+  base-url: http://localhost:9411
+cloud:
+  gateway:
+    routes:
+      - id: student
+        uri: lb://STUDENT
+        predicates:
+          - Path=/api/v1/students/**
+#security:
+#  ignored=/**:
+#  enable-csrf: false
+#keycloak:
+#  realm: Student-fraud
+#  resource: Students-fraud-check
+#  auth-server-url: http://localhost:8180/auth
+#  public-client: true
+
 eureka:
   client:
     service-url:
@@ -20,3 +36,25 @@ eureka:
 
     fetch-registry: true
     register-with-eureka: true
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak-spring-gateway-client:
+            provider: my-keycloak-provider
+            client-id: gateway-client
+            authorization-grant-type: authorization_code
+            client-secret: 4a97b3ab-d77b-4190-8782-42d6a578644f
+            redirect-uri: "http://localhost:8083/login/oauth2/code/keycloak"
+        provider:
+          my-keycloak-provider:
+            issuer-uri: http://127.0.0.1:8180/auth/realms/microservices-realm
+
+management:
+  endpoint:
+    web:
+      exposure:
+        include: "*"
+
+
